@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日主题大赛mrds-每日主题大赛_主题大赛报名_创意主题赛事_主题大赛作品</title>
+<meta name="description" content="每日主题大赛mrds是一个围绕每日主题大赛的创意赛事信息页面，整理每日主题大赛的报名方式、主题选题、作品展示与评选说明，帮助参赛者理解主题大赛的参与流程，并了解创意主题赛事中选题、创作与提交的实用要点。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231b2a4a'/%3E%3Cpath d='M32 12l5.6 12.9L51 26.5l-9.8 9.3 2.4 13.5L32 42.6 20.4 49.3l2.4-13.5L13 26.5l13.4-1.6z' fill='%23f5b942'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1b2a4a;
+    --ink-soft:#3a4a6b;
+    --paper:#f6f4ef;
+    --paper-2:#ffffff;
+    --accent:#f5b942;
+    --accent-deep:#d99a1f;
+    --line:#dcd6c9;
+    --muted:#7a7466;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    font-size:16px;
+  }
+  a{color:var(--ink);text-decoration:none;}
+  a:hover{color:var(--accent-deep);}
+  .shell{max-width:1080px;margin:0 auto;padding:0 20px;}
+
+  /* 顶部 */
+  .topbar{
+    background:var(--ink);
+    color:#e8e4da;
+    border-bottom:3px solid var(--accent);
+  }
+  .topbar .shell{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;padding-top:14px;padding-bottom:14px;
+  }
+  .brandline{display:flex;align-items:center;gap:12px;}
+  .brandmark{
+    width:38px;height:38px;flex:0 0 38px;
+    background:var(--accent);color:var(--ink);
+    display:grid;place-items:center;
+    border-radius:8px;font-weight:700;font-size:18px;
+  }
+  .brandname{font-size:19px;font-weight:700;letter-spacing:.5px;color:#fff;}
+  .brandsub{font-size:12px;color:#b9b2a2;letter-spacing:1px;}
+  .topnav{display:flex;gap:6px;flex-wrap:wrap;}
+  .topnav a{
+    color:#dcd6c9;font-size:14px;padding:6px 10px;border-radius:6px;
+    border:1px solid transparent;
+  }
+  .topnav a:hover{color:#fff;border-color:#4a5a7d;background:#243558;}
+
+  /* 首屏 */
+  .stage{
+    background:
+      radial-gradient(circle at 88% 12%, rgba(245,185,66,.22), transparent 46%),
+      linear-gradient(160deg,#22335a 0%,#1b2a4a 62%,#16223c 100%);
+    color:#f2efe8;
+    padding:56px 0 48px;
+    border-bottom:1px solid #2c3f66;
+  }
+  .stage-inner{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start;}
+  .kicker{
+    display:inline-block;font-size:13px;letter-spacing:2px;
+    color:var(--accent);border:1px solid rgba(245,185,66,.5);
+    padding:3px 10px;border-radius:999px;margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(26px,4vw,40px);
+    line-height:1.32;margin:0 0 16px;color:#fff;font-weight:800;
+    letter-spacing:.5px;
+  }
+  .tagline{font-size:17px;color:#ded8ca;margin:0 0 20px;max-width:34em;}
+  .stage-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:11px 22px;border-radius:8px;
+    font-size:15px;font-weight:600;border:1px solid transparent;transition:.18s;
+  }
+  .btn-solid{background:var(--accent);color:#231f16;}
+  .btn-solid:hover{background:#ffc954;color:#231f16;}
+  .btn-ghost{border-color:#5a6a8c;color:#e3ddd0;}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  .today-panel{
+    background:rgba(255,255,255,.05);
+    border:1px solid #3b4d75;
+    border-radius:10px;
+    padding:20px 22px;
+  }
+  .today-panel h2{
+    font-size:15px;margin:0 0 12px;color:var(--accent);
+    letter-spacing:1px;font-weight:700;
+  }
+  .today-list{list-style:none;margin:0;padding:0;}
+  .today-list li{
+    padding:10px 0;border-bottom:1px dashed #3b4d75;font-size:14px;color:#d8d2c4;
+    display:flex;justify-content:space-between;gap:12px;
+  }
+  .today-list li:last-child{border-bottom:none;}
+  .today-list .tag{
+    font-size:12px;color:#1b2a4a;background:var(--accent);
+    border-radius:4px;padding:1px 7px;white-space:nowrap;align-self:center;
+  }
+
+  /* 通用区块 */
+  section{padding:52px 0;}
+  .sec-head{margin-bottom:26px;}
+  .sec-head h2{
+    font-size:24px;margin:0 0 8px;font-weight:800;letter-spacing:.5px;
+    position:relative;padding-left:14px;
+  }
+  .sec-head h2::before{
+    content:"";position:absolute;left:0;top:6px;bottom:6px;width:5px;
+    background:var(--accent);border-radius:3px;
+  }
+  .sec-head p{margin:0;color:var(--muted);font-size:15px;padding-left:14px;}
+  .prose p{color:var(--ink-soft);margin:0 0 14px;font-size:15.5px;}
+  .prose p:last-child{margin-bottom:0;}
+
+  /* 报名流程 */
+  .flow{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;
+  }
+  .flow-step{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+    padding:22px 18px;position:relative;
+  }
+  .flow-step .num{
+    font-size:13px;font-weight:700;color:#231f16;background:var(--accent);
+    width:26px;height:26px;display:grid;place-items:center;border-radius:50%;
+    margin-bottom:12px;
+  }
+  .flow-step h3{font-size:16px;margin:0 0 8px;font-weight:700;}
+  .flow-step p{margin:0;font-size:14px;color:var(--muted);}
+
+  /* 主题选题 */
+  .themes{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  }
+  .theme-item{
+    background:var(--paper-2);border:1px solid var(--line);
+    border-left:5px solid var(--accent);border-radius:8px;padding:20px;
+  }
+  .theme-item h3{font-size:16.5px;margin:0 0 8px;font-weight:700;}
+  .theme-item p{margin:0 0 10px;font-size:14.5px;color:var(--ink-soft);}
+  .theme-item .meta{font-size:12.5px;color:var(--muted);letter-spacing:.5px;}
+
+  /* 评选 */
+  .judge-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .judge-col{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+    padding:24px;
+  }
+  .judge-col h3{font-size:17px;margin:0 0 14px;font-weight:700;}
+  .judge-col ul{margin:0;padding-left:20px;}
+  .judge-col li{margin-bottom:9px;font-size:14.8px;color:var(--ink-soft);}
+  .judge-col li:last-child{margin-bottom:0;}
+
+  /* 作品展示 */
+  .works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .work{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:8px;
+    overflow:hidden;display:flex;flex-direction:column;
+  }
+  .work-thumb{
+    height:110px;background:linear-gradient(135deg,#2c3f66,#1b2a4a);
+    display:grid;place-items:center;color:var(--accent);font-size:13px;letter-spacing:2px;
+  }
+  .work-body{padding:16px 18px;}
+  .work-body h3{font-size:15.5px;margin:0 0 6px;font-weight:700;}
+  .work-body p{margin:0 0 10px;font-size:13.8px;color:var(--muted);}
+  .work-body .state{
+    font-size:12px;color:var(--accent-deep);border:1px dashed var(--accent-deep);
+    border-radius:4px;padding:1px 8px;display:inline-block;
+  }
+
+  /* 注意事项 */
+  .notice{
+    background:#fffaf0;border:1px solid #ead9b0;border-radius:10px;padding:26px 28px;
+  }
+  .notice h3{font-size:16.5px;margin:0 0 12px;font-weight:700;color:#7a5a12;}
+  .notice ul{margin:0;padding-left:20px;}
+  .notice li{margin-bottom:8px;font-size:14.8px;color:#5c4a20;}
+  .notice li:last-child{margin-bottom:0;}
+
+  /* FAQ */
+  .faq-wrap{display:grid;gap:12px;}
+  details{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:8px;
+    padding:0;
+  }
+  summary{
+    cursor:pointer;padding:16px 20px;font-weight:600;font-size:15.5px;
+    list-style:none;display:flex;justify-content:space-between;gap:12px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"＋";color:var(--accent-deep);font-weight:700;}
+  details[open] summary::after{content:"－";}
+  details .answer{padding:0 20px 18px;font-size:14.8px;color:var(--ink-soft);}
+
+  /* CTA */
+  .cta{
+    background:linear-gradient(140deg,#22335a,#16223c);
+    color:#f2efe8;border-radius:12px;padding:40px 36px;
+    display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;
+  }
+  .cta h2{margin:0 0 8px;font-size:22px;color:#fff;font-weight:800;}
+  .cta p{margin:0;font-size:15px;color:#cfc8b9;max-width:38em;}
+
+  footer{
+    background:var(--ink);color:#b9b2a2;margin-top:20px;
+    border-top:3px solid var(--accent);
+  }
+  footer .shell{padding:30px 20px;font-size:13.5px;line-height:1.9;}
+  footer strong{color:#e8e4da;}
+
+  @media (max-width:860px){
+    .stage-inner{grid-template-columns:1fr;}
+    .flow{grid-template-columns:repeat(2,1fr);}
+    .themes{grid-template-columns:1fr 1fr;}
+    .works{grid-template-columns:1fr 1fr;}
+    .judge-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    body{font-size:15px;}
+    section{padding:38px 0;}
+    .stage{padding:40px 0 34px;}
+    .flow{grid-template-columns:1fr;}
+    .themes{grid-template-columns:1fr;}
+    .works{grid-template-columns:1fr;}
+    .topbar .shell{padding-top:12px;padding-bottom:12px;}
+    .topnav a{font-size:13px;padding:5px 8px;}
+    .cta{padding:28px 22px;}
+    h1{font-size:24px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="shell">
+    <div class="brandline">
+      <div class="brandmark">题</div>
+      <div>
+        <div class="brandname">每日主题大赛mrds</div>
+        <div class="brandsub">主题赛事 · 创意选题 · 作品提交</div>
+      </div>
+    </div>
+    <nav class="topnav" aria-label="主导航">
+      <a href="#about">关于赛事</a>
+      <a href="#flow">报名流程</a>
+      <a href="#themes">主题选题</a>
+      <a href="#judge">评选说明</a>
+      <a href="#works">作品展示</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="stage">
+    <div class="shell stage-inner">
+      <div>
+        <span class="kicker">每日主题 · 限时创作</span>
+        <h1>每日主题大赛mrds：围绕每日主题大赛的选题、报名与作品整理</h1>
+        <p class="tagline">把每日主题大赛的参与流程讲清楚：怎么读懂主题、如何准备作品、提交前后需要注意什么。</p>
+        <div class="stage-actions">
+          <a class="btn btn-solid" href="#flow">查看参与流程</a>
+          <a class="btn btn-ghost" href="#themes">了解主题分类</a>
+        </div>
+      </div>
+      <aside class="today-panel" aria-label="主题速览">
+        <h2>主题速览</h2>
+        <ul class="today-list">
+          <li><span>命题理解与拆题</span><span class="tag">基础</span></li>
+          <li><span>创意方向与草图</span><span class="tag">准备</span></li>
+          <li><span>作品提交与命名</span><span class="tag">流程</span></li>
+          <li><span>评选维度与反馈</span><span class="tag">规则</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="shell">
+      <div class="sec-head">
+        <h2>每日主题大赛mrds是什么</h2>
+        <p>先弄清赛事定位，再决定要不要参与、以什么方式参与。</p>
+      </div>
+      <div class="prose">
+        <p>每日主题大赛mrds是一个围绕“每日主题大赛”这一形式展开的赛事信息页面。它关心的不是某一场具体的线下比赛，而是“每天给出一个主题、参与者在限定时间内完成创作并提交”的这类活动本身。访问这个页面的人，通常想解决三类问题：今天或近期的主题是什么、参加每日主题大赛需要准备什么、作品提交之后会怎样被看待。</p>
+        <p>因此，页面把每日主题大赛拆成“理解主题、准备作品、提交作品、查看评选说明”几个环节来写。它更像一份赛事说明与选题参考，而不是作品排行榜。对于第一次听说每日主题大赛的人，这里会先解释主题大赛的基本逻辑；对于已经参与过的人，则可以直接跳到选题分类、评选维度与注意事项部分，找到更具体的内容。</p>
+        <p>需要说明的是，每日主题大赛mrds本身不承诺任何具体的名次、奖励或结果，也不代表某个主办方的官方立场。页面对每日主题大赛的描述以通用的赛事常识和创作流程为主，涉及具体赛制、时间安排与提交入口时，应以实际发布的通知为准。这样处理，既能让初次访问者快速建立对每日主题大赛的整体认识，也能避免把说明性内容误当成官方公告。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="flow" style="background:#efece4;">
+    <div class="shell">
+      <div class="sec-head">
+        <h2>参加每日主题大赛的四个环节</h2>
+        <p>主题大赛的流程并不复杂，难的是每个环节都做到位。</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="num">1</div>
+          <h3>读题与拆题</h3>
+          <p>先确认主题的字面意思、限定条件与可用形式，再判断自己能从哪个角度切入。每日主题大赛的主题往往短小，越需要主动补全边界。</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">2</div>
+          <h3>确定创作方向</h3>
+          <p>围绕主题大赛给出的关键词，列出两到三个可行方向，比较完成度与时间成本，选择一个能按时交付的方案。</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">3</div>
+          <h3>完成并自检</h3>
+          <p>按提交要求整理文件、命名与说明文字。每日主题大赛通常有明确的形式限制，提前自检能减少返工。</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">4</div>
+          <h3>提交与记录</h3>
+          <p>提交后保留一份自己的备份与提交记录，方便后续查看评选说明或复盘主题大赛中的得失。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="themes">
+    <div class="shell">
+      <div class="sec-head">
+        <h2>每日主题大赛的常见选题类型</h2>
+        <p>主题不同，准备方式也不同。以下分类用于帮助判断该往哪个方向用力。</p>
+      </div>
+      <div class="themes">
+        <article class="theme-item">
+          <h3>概念型主题</h3>
+          <p>主题是一个抽象词，例如某种情绪或状态。每日主题大赛遇到这类题目时，重点是把它落到具体场景，而不是停留在解释词义。</p>
+          <div class="meta">关键词：抽象 · 具体化 · 场景</div>
+        </article>
+        <article class="theme-item">
+          <h3>物件型主题</h3>
+          <p>主题指向某个具体物品或元素。主题大赛中这类题目限制更明确，发挥空间在于视角与组合方式，而不是更换对象。</p>
+          <div class="meta">关键词：具体 · 视角 · 组合</div>
+        </article>
+        <article class="theme-item">
+          <h3>场景型主题</h3>
+          <p>主题描述一个情境或时刻。每日主题大赛里这类题目适合讲故事，注意交代清楚时间、地点与人物关系。</p>
+          <div class="meta">关键词：情境 · 叙事 · 细节</div>
+        </article>
+        <article class="theme-item">
+          <h3>对比型主题</h3>
+          <p>主题包含两个相对的概念。参与主题大赛时，需要明确对比的落点，避免两边都写却都没有说透。</p>
+          <div class="meta">关键词：对照 · 侧重 · 落点</div>
+        </article>
+        <article class="theme-item">
+          <h3>限定型主题</h3>
+          <p>主题附带形式或条件限制。每日主题大赛中限制不是障碍，而是判断作品是否切题的重要依据，需逐条核对。</p>
+          <div class="meta">关键词：限制 · 切题 · 核对</div>
+        </article>
+        <article class="theme-item">
+          <h3>开放型主题</h3>
+          <p>主题范围较宽，几乎什么都能做。主题大赛遇到开放题，反而要先给自己设一个清晰的小切口。</p>
+          <div class="meta">关键词：开放 · 切口 · 聚焦</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="judge" style="background:#efece4;">
+    <div class="shell">
+      <div class="sec-head">
+        <h2>每日主题大赛的评选维度怎么看</h2>
+        <p>不同赛事的细则不同，但评价一份主题大赛作品时，通常会关注这些方面。</p>
+      </div>
+      <div class="judge-grid">
+        <div class="judge-col">
+          <h3>作品本身</h3>
+          <ul>
+            <li>切题程度：作品是否回应了每日主题大赛给出的核心词，而不是借题发挥。</li>
+            <li>完成度：结构是否完整，细节是否到位，是否存在明显未完成的部分。</li>
+            <li>表达清晰度：主题大赛的作品需要让观看者较快理解你想表达什么。</li>
+            <li>原创性：在主题范围内是否有自己的处理方式，而非套用现成模板。</li>
+          </ul>
+        </div>
+        <div class="judge-col">
+          <h3>参与规范</h3>
+          <ul>
+            <li>形式合规：文件格式、尺寸、时长等是否符合每日主题大赛的提交要求。</li>
+            <li>信息完整：作品名称、说明文字、署名等信息是否填写齐全。</li>
+            <li>时间节点：是否在主题大赛规定的提交时间内完成上传。</li>
+            <li>独立完成：是否遵守赛事关于合作与引用素材的相关约定。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="shell">
+      <div class="sec-head">
+        <h2>作品展示区</h2>
+        <p>用于说明每日主题大赛作品可以如何归类呈现。具体作品以实际发布内容为准。</p>
+      </div>
+      <div class="works">
+        <article class="work">
+          <div class="work-thumb">主题作品</div>
+          <div class="work-body">
+            <h3>命题创作类</h3>
+            <p>围绕每日主题大赛给出的单一主题完成的完整作品，强调切题与完成度。</p>
+            <span class="state">内容整理中</span>
+          </div>
+        </article>
+        <article class="work">
+          <div class="work-thumb">主题作品</div>
+          <div class="work-body">
+            <h3>系列尝试类</h3>
+            <p>同一主题下的多组尝试，适合展示在主题大赛中对同一命题的不同处理思路。</p>
+            <span class="state">内容整理中</span>
+          </div>
+        </article>
+        <article class="work">
+          <div class="work-thumb">主题作品</div>
+          <div class="work-body">
+            <h3>限定条件类</h3>
+            <p>在形式或素材受限的前提下完成的作品，用于说明每日主题大赛的限制如何影响创作。</p>
+            <span class="state">内容整理中</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="tips">
+    <div class="shell">
+      <div class="sec-head">
+        <h2>参与每日主题大赛的注意事项</h2>
+        <p>这些细节不决定作品上限，但常常影响作品能否被顺利看到。</p>
+      </div>
+      <div class="notice">
+        <h3>提交前请逐条核对</h3>
+        <ul>
+          <li>确认每日主题大赛的主题表述，不要凭印象替换关键词。</li>
+          <li>按要求命名文件，避免使用特殊符号导致无法正常打开。</li>
+          <li>主题大赛的说明文字尽量简短清楚，不要用大段文字替代作品本身。</li>
+          <li>保留原始工程文件或过程稿，便于后续修改与复盘。</li>
+          <li>不使用来源不明的素材，引用他人内容时遵守相关约定。</li>
+          <li>提交后关注通知渠道，避免错过主题大赛的补充说明。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="background:#efece4;">
+    <div class="shell">
+      <div class="sec-head">
+        <h2>关于每日主题大赛的常见问题</h2>
+        <p>把最常被问到的问题集中放在这里，方便快速查找。</p>
+      </div>
+      <div class="faq-wrap">
+        <details>
+          <summary>每日主题大赛mrds是官方赛事页面吗？</summary>
+          <div class="answer">不是。每日主题大赛mrds是一个围绕每日主题大赛这一形式整理赛事信息、选题思路与参与流程的说明页面，不代表任何主办方的官方立场。涉及具体赛制、时间、奖励与提交入口，请以实际发布的通知为准。</div>
+        </details>
+        <details>
+          <summary>第一次参加每日主题大赛，应该先准备什么？</summary>
+          <div class="answer">先完整读一遍主题表述与提交要求，确认形式、尺寸、时长等限制，再决定创作方向。每日主题大赛的主题通常较短，建议先用一句话写下自己对这个主题的理解，再判断是否偏离题意。</div>
+        </details>
+        <details>
+          <summary>主题大赛的命题很短，怎么判断自己有没有跑题？</summary>
+          <div class="answer">可以把主题拆成核心词和限定词，逐项检查作品是否回应了核心词、是否遵守了限定词。若作品需要额外解释才能看出与每日主题大赛的关联，通常说明切题度还有提升空间。</div>
+        </details>
+        <details>
+          <summary>作品提交后还能修改吗？</summary>
+          <div class="answer">能否修改取决于具体赛事规则。一般建议在提交前完成自检，并保留一份原始文件。如果每日主题大赛提供补充提交或修改通道，应按通知中的说明操作，不要重复提交多个版本造成混乱。</div>
+        </details>
+        <details>
+          <summary>每日主题大赛的作品可以重复使用旧作吗？</summary>
+          <div class="answer">这需要看具体规则对原创与首发的要求。即使允许使用旧作，也应确认它是否真正回应了本期主题。主题大赛更看重作品与当期命题的匹配程度，而不是作品本身的制作时间。</div>
+        </details>
+        <details>
+          <summary>没有获奖，参与每日主题大赛还有意义吗？</summary>
+          <div class="answer">有意义。每日主题大赛的价值之一在于限时命题带来的练习强度：你需要在有限时间内完成读题、构思与交付。把每次提交当作一次完整练习，记录自己卡住的环节，比单纯关注结果更有帮助。</div>
+        </details>
+        <details>
+          <summary>在哪里可以看到每日主题大赛的往期主题？</summary>
+          <div class="answer">往期主题通常由发布方在通知或专题中整理。本页不虚构往期主题列表，只提供选题类型与参与流程的通用说明。若需要具体往期题目，请以实际发布渠道为准。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="cta">
+        <div>
+          <h2>先把主题读懂，再开始创作</h2>
+          <p>每日主题大赛mrds把参与流程、选题分类与评选维度整理在一起，方便你在动手之前先理清思路，少走弯路。</p>
+        </div>
+        <a class="btn btn-solid" href="#flow">回到参与流程</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <p><strong>每日主题大赛mrds</strong> · 主题赛事信息与选题参考</p>
+    <p>本页围绕每日主题大赛的参与流程、主题类型与评选维度进行说明，不构成官方公告。具体赛制、时间安排与提交方式请以实际发布的通知为准。</p>
+  </div>
+</footer>
+
+</body>
+  </html>
